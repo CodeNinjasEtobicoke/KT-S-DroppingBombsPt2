@@ -86,6 +86,6 @@ public class GameManager : MonoBehaviour
 
         splash.SetActive(true);
 
-        //score = scoreSystem.GetComponent<Score>().score;
+        score = scoreSystem.GetComponent<Score>().score;
     }
 }
