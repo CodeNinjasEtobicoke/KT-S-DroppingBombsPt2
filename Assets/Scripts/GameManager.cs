@@ -33,7 +33,16 @@ public class GameManager : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
+            spawner.active = true;
             title.SetActive(false);
-        } 
+
+        }
+        var nextBomb = GameObject.FindGameObjectsWithTag("Bomb");
+
+        foreach (GameObject bombObject in nextBomb)
+        {
+            Destroy(bombObject);
+        }
+
     }
 }
