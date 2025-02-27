@@ -718,7 +718,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 1.5e-44, z: 1.817e-42, w: 4.5918e-41}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -850,7 +850,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 735605585}
-  - component: {fileID: 735605584}
+  - component: {fileID: 735605586}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -858,22 +858,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &735605584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735605583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f9c9effafdb9334ea272f311b5a2138, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bombPrefab: {fileID: 5298153494359888461, guid: 88e91f45e4952834ba82932579e2711e, type: 3}
-  delay: 2
-  active: 1
-  delayRange: {x: 0.5, y: 1}
 --- !u!4 &735605585
 Transform:
   m_ObjectHideFlags: 0
@@ -889,6 +873,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &735605586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735605583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cd76ce1545e564e90255ad19354577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombPrefab: {fileID: 5298153494359888461, guid: 88e91f45e4952834ba82932579e2711e, type: 3}
+  delay: 1
+  active: 0
+  delayRange: {x: 1, y: 2}
 --- !u!1 &808175665
 GameObject:
   m_ObjectHideFlags: 0

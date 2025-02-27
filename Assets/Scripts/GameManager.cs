@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public GameObject splash;
 
 
+
+
     void Awake()
     {
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
@@ -41,8 +43,10 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject bombObject in nextBomb)
         {
-            Destroy(bombObject);
+            if (bombObject.transform.position.y < (-screenBounds.y - 12))
+            {
+                Destroy(bombObject);
+            }
         }
-
     }
 }
