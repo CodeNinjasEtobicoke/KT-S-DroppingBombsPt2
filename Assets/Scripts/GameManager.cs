@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class GameManager : MonoBehaviour
 {
     private Spawner spawner;
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
 
 
 
-
+    
     void Awake()
     {
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
@@ -33,12 +34,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (!gameStarted)
         {
-            spawner.active = true;
-            title.SetActive(false);
+            if(Input.anyKeyDown)
+            {
+                ResetGame();
 
+            }
         }
+        
+
         var nextBomb = GameObject.FindGameObjectsWithTag("Bomb");
 
         foreach (GameObject bombObject in nextBomb)
@@ -48,5 +53,12 @@ public class GameManager : MonoBehaviour
                 Destroy(bombObject);
             }
         }
+    }
+    void ResetGame()
+        {
+        spawner.active = true;
+        title.SetActive(false);
+        player = Instantiate(playerPrefab, new Vector3(0, 0, 0), playerPrefab.transform.rotation);
+        gameStarted = true;
     }
 }
