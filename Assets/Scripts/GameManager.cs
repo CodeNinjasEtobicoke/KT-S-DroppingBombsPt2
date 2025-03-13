@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private Spawner spawner;
     public GameObject title;
     private Vector2 screenBounds;
-    
+
     [Header("Player")]
     public GameObject playerPrefab;
     private GameObject player;
@@ -22,12 +22,21 @@ public class GameManager : MonoBehaviour
     public int pointsWorth = 1;
     public int score;
 
+    private bool smokeCleared = true;
+
+
+    private int bestScore = 0;
+    public TMP_Text bestScoreText;
+    private bool beatBestScore;
+
 
     private void Awake()
     {
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         scoreText.enabled = false;
+
+        bestScoreText.enabled = false;
     }
 
     // Start is called before the first frame update
@@ -35,6 +44,9 @@ public class GameManager : MonoBehaviour
     {
         title.SetActive(true);
         splash.SetActive(false);
+
+        bestScore = PlayerPrefs.GetInt("BestScore");
+        bestScoreText.text = "Best Score:" + bestScore.ToString();
     }
 
     // Update is called once per frame
@@ -42,6 +54,11 @@ public class GameManager : MonoBehaviour
     {
         if (!gameStarted)
         {
+            if (Input.anyKeyDown && smokeCleared)
+            {
+                smokeCleared = false;
+                ResetGame();
+            }
             if (Input.anyKeyDown)
             {
                 ResetGame();
@@ -77,6 +94,21 @@ public class GameManager : MonoBehaviour
     {
         spawner.active = false;
         gameStarted = false;
+        Invoke("SplashScreen", 2);
+
+        if (score > bestScore)
+        {
+            bestScore = score;
+            PlayerPrefs.SetInt("BestScore", bestScore);
+            beatBestScore = true;
+            bestScoreText.text = "Best Score:" + bestScore.ToString();
+        }
+
+
+    }
+    void SplashScreen()
+    {
+        smokeCleared = true;
         splash.SetActive(true);
     }
 
@@ -90,6 +122,9 @@ public class GameManager : MonoBehaviour
 
         scoreText.enabled = true;
         score = 0;
+
+        beatBestScore = false;
+        bestScoreText.enabled = true;
 
         scoreText.text = "Score: " + score.ToString();
     }
